@@ -1,0 +1,109 @@
+
+/* ===== Wasabiya Business Plan Theme for Markdown Preview Enhanced ===== */
+
+/* --- Base layout --- */
+.markdown-preview.markdown-preview {
+  font-family: "Noto Serif JP", "Yu Gothic", "Hiragino Kaku Gothic ProN", serif;
+  line-height: 1.8;
+  max-width: 900px;
+  margin: 2rem auto;
+  font-size: 15.5px;
+  color: #222;
+}
+
+/* --- Headings --- */
+.markdown-preview.markdown-preview h1 {
+  font-size: 1.9rem;
+  letter-spacing: 0.02em;
+  border-bottom: 2px solid #444;
+  padding-bottom: .4rem;
+  margin-top: 0;
+}
+.markdown-preview.markdown-preview h2 {
+  font-size: 1.5rem;
+  margin-top: 2.0rem;
+  border-left: 6px solid #555;
+  padding-left: .6rem;
+}
+.markdown-preview.markdown-preview h3 {
+  font-size: 1.2rem;
+  margin-top: 1.6rem;
+  color: #333;
+}
+
+/* --- Paragraphs & lists --- */
+.markdown-preview.markdown-preview p { margin: .6rem 0 1rem; }
+.markdown-preview.markdown-preview li { margin: .25rem 0; }
+
+/* --- Horizontal rule --- */
+.markdown-preview.markdown-preview hr {
+  border: 0;
+  border-top: 1px solid #ddd;
+  margin: 1.6rem 0;
+}
+
+/* --- Links --- */
+.markdown-preview.markdown-preview a {
+  text-decoration: none;
+  border-bottom: 1px solid #aaa;
+  padding-bottom: .05rem;
+  color: #0b61a4;
+}
+.markdown-preview.markdown-preview a:hover { border-bottom-color: #0b61a4; }
+
+/* --- Tables --- */
+.markdown-preview.markdown-preview table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1rem 0 1.6rem;
+  table-layout: fixed; /* keep columns even for printing */
+}
+.markdown-preview.markdown-preview th,
+.markdown-preview.markdown-preview td {
+  border: 1px solid #bbb;
+  padding: .5rem .6rem;
+  vertical-align: top;
+  word-wrap: break-word;
+}
+.markdown-preview.markdown-preview th {
+  background: #f0f1f3;
+  font-weight: 600;
+  text-align: left;
+}
+/* Zebra rows for readability */
+.markdown-preview.markdown-preview tbody tr:nth-child(odd) td {
+  background: #fafafa;
+}
+
+/* --- Callouts (blockquote) --- */
+.markdown-preview.markdown-preview blockquote {
+  border-left: 4px solid #9bbadf;
+  background: #f6f9ff;
+  padding: .6rem .9rem;
+  margin: 1rem 0;
+}
+
+/* --- Code blocks (minimal) --- */
+.markdown-preview.markdown-preview pre {
+  background: #f6f8fa;
+  border: 1px solid #e4e7eb;
+  padding: .8rem;
+  overflow: auto;
+  border-radius: 6px;
+}
+
+/* --- Print (A4) --- */
+@page { size: A4; margin: 18mm 16mm 20mm 16mm; }
+@media print {
+  .markdown-preview.markdown-preview {
+    color: #000;
+    max-width: unset;
+    margin: 0;
+    font-size: 12pt;
+  }
+  /* Avoid breaking inside tables & headings */
+  h1, h2, h3 { page-break-after: avoid; }
+  table { page-break-inside: avoid; }
+  /* Utility: add a manual page break with <div class="page-break"></div> in HTML block */
+  .page-break { page-break-before: always; }
+}
