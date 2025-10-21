@@ -1,13 +1,4 @@
----
-title: わさびや事業計画書
-author: Takao Shibasaki
-output:
-  html_document:
-    css: mpe-wasabiya.css
----
-
 <!-- @import "mpe-wasabiya.css" -->
-
 
 ## 事業計画書
 #### （奈良中央信用金庫 グッドサポート用）
