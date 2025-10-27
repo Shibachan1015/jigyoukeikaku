@@ -1,0 +1,64 @@
+/* ===== Wasabiya Plan Theme (for GitHub Pages) ===== */
+
+/* Base */
+:root { scroll-behavior: smooth; }
+body {
+  font-family: "Noto Serif JP","Yu Gothic","Hiragino Kaku Gothic ProN",serif;
+  line-height: 1.8;
+  color: #222;
+  margin: 0;
+  background: #fff;
+}
+.container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  font-size: 15.5px;
+}
+.note { color:#666; font-size:.95em; }
+
+/* Headings */
+h1, h2, h3, h4 { margin: 1.2rem 0 .8rem; line-height: 1.35; }
+h1 { font-size: 2rem; border-bottom: 2px solid #444; padding-bottom: .4rem; }
+h2 { font-size: 1.8rem; border-bottom: 2px solid #444; padding-bottom: .4rem; }
+h3 { font-size: 1.4rem; border-left: 6px solid #555; padding-left: .6rem; }
+h4 { font-size: 1.15rem; color:#333; }
+
+p { margin: .6rem 0 1rem; }
+ul, ol { margin: .4rem 0 1rem 1.2rem; }
+li { margin: .25rem 0; }
+
+hr { border: 0; border-top: 1px solid #ddd; margin: 1.6rem 0; }
+
+a { color:#0b61a4; text-decoration: none; border-bottom: 1px solid #aaa; padding-bottom: .05rem; }
+a:hover { border-bottom-color: #0b61a4; }
+
+.toc { columns: 2; gap: 1rem; }
+.toc li { break-inside: avoid; }
+
+/* Images / figures */
+img { max-width: 100%; height: auto; display: block; }
+.fig { text-align:center; margin: 1rem auto; }
+.fig em { display:block; font-style: italic; color:#555; margin-top:.4rem; }
+
+/* Tables */
+.table-wrap { overflow-x:auto; }
+table { width:100%; border-collapse: collapse; margin: 1rem 0 1.6rem; table-layout: fixed; }
+th, td { border:1px solid #bbb; padding:.5rem .6rem; vertical-align: top; word-wrap: break-word; }
+th { background:#f0f1f3; font-weight:600; text-align:left; }
+tbody tr:nth-child(odd) td { background:#fafafa; }
+td.num { text-align:right; }
+code { background:#f6f8fa; border:1px solid #e4e7eb; padding:.1rem .3rem; border-radius:4px; }
+
+/* Footer */
+.foot { text-align:right; color:#666; font-size:.95em; margin-top:2rem; }
+
+/* Print (A4) */
+@page { size: A4; margin: 18mm 16mm 20mm 16mm; }
+@media print {
+  body { color:#000; }
+  .container { max-width: unset; margin: 0; font-size: 12pt; }
+  h1,h2,h3 { page-break-after: avoid; }
+  table { page-break-inside: avoid; }
+  .page-break { page-break-before: always; }
+}
