@@ -1,14 +1,19 @@
 /* ===== Wasabiya Plan Theme (for GitHub Pages) ===== */
 
-/* Base */
+/* ---------- Base ---------- */
 :root { scroll-behavior: smooth; }
+* { box-sizing: border-box; }
+html, body { height: 100%; }
 body {
-  font-family: "Noto Serif JP","Yu Gothic","Hiragino Kaku Gothic ProN",serif;
+  font-family: "Noto Serif JP","Yu Gothic","Hiragino Kaku Gothic ProN",-apple-system,BlinkMacSystemFont,serif;
   line-height: 1.8;
   color: #222;
   margin: 0;
   background: #fff;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
+
 .container {
   max-width: 900px;
   margin: 2rem auto;
@@ -17,7 +22,7 @@ body {
 }
 .note { color:#666; font-size:.95em; }
 
-/* Headings */
+/* ---------- Headings ---------- */
 h1, h2, h3, h4 { margin: 1.2rem 0 .8rem; line-height: 1.35; }
 h1 { font-size: 2rem; border-bottom: 2px solid #444; padding-bottom: .4rem; }
 h2 { font-size: 1.8rem; border-bottom: 2px solid #444; padding-bottom: .4rem; }
@@ -30,64 +35,104 @@ li { margin: .25rem 0; }
 
 hr { border: 0; border-top: 1px solid #ddd; margin: 1.6rem 0; }
 
+/* ---------- Links ---------- */
 a { color:#0b61a4; text-decoration: none; border-bottom: 1px solid #aaa; padding-bottom: .05rem; }
 a:hover { border-bottom-color: #0b61a4; }
 
-.toc { columns: 2; gap: 1rem; }
+/* ---------- TOC ---------- */
+.toc { columns: 2; gap: 1rem; padding-left: 1rem; }
 .toc li { break-inside: avoid; }
 
-/* Images / figures */
+/* ---------- Media (images/figures) ---------- */
 img { max-width: 100%; height: auto; display: block; }
 .fig { text-align:center; margin: 1rem auto; }
 .fig em { display:block; font-style: italic; color:#555; margin-top:.4rem; }
 
-/* Tables */
-.table-wrap { overflow-x:auto; }
-table { width:100%; border-collapse: collapse; margin: 1rem 0 1.6rem; table-layout: fixed; }
-th, td { border:1px solid #bbb; padding:.5rem .6rem; vertical-align: top; word-wrap: break-word; }
+/* ---------- Tables (responsive & print-friendly) ---------- */
+.table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 0 0 1.6rem 0;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0 1.6rem;
+  /* PCでは固定レイアウトで均等、モバイルでは後のメディアクエリでautoに切替 */
+  table-layout: fixed;
+  background: #fff;
+}
+th, td {
+  border:1px solid #bbb;
+  padding:.5rem .6rem;
+  vertical-align: top;
+  /* デフォは自然改行、数値列はクラスで制御 */
+  word-wrap: break-word;
+  word-break: normal;
+}
 th { background:#f0f1f3; font-weight:600; text-align:left; }
 tbody tr:nth-child(odd) td { background:#fafafa; }
-td.num { text-align:right; }
+
+/* 数値列：右寄せ＋等幅数字（桁が揃う） */
+td.num, th.num {
+  text-align:right;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1, "lnum" 1;
+}
+
+/* 縦割れ（1文字ごと改行）を避ける：数値・短文はnowrap */
+td.nowrap, th.nowrap { white-space: nowrap; }
+
+/* ヘッダーをスクロール時に見失わない（対応ブラウザのみ） */
+th { position: sticky; top: 0; z-index: 1; }
+
+/* ---------- Code ---------- */
 code { background:#f6f8fa; border:1px solid #e4e7eb; padding:.1rem .3rem; border-radius:4px; }
 
-/* Footer */
+/* ---------- Footer ---------- */
 .foot { text-align:right; color:#666; font-size:.95em; margin-top:2rem; }
 
-/* Print (A4) */
+/* ---------- Mobile (≤ 768px) ---------- */
+@media (max-width: 768px) {
+  .container { margin: 1.2rem auto; font-size: 15px; }
+  .toc { columns: 1; }
+
+  /* テーブル：内容に応じた列幅にして数字が縦割れしない */
+  table { table-layout: auto !important; }
+  /* 全体を横スクロールで見せる＋セルの不要な折返しを抑制 */
+  table, th, td { white-space: nowrap; }
+  /* 日本語の自然な改行を許したいセルは .wrap を付ける */
+  td.wrap { white-space: normal; word-break: break-all; }
+
+  th, td { padding: .45rem .5rem; }
+  table { font-size: 0.92em; }
+
+  /* スワイプしやすい余白 */
+  .table-wrap { margin: 0 -10px 1.2rem; padding: 0 10px; }
+}
+
+/* ---------- Print (A4) ---------- */
 @page { size: A4; margin: 18mm 16mm 20mm 16mm; }
 @media print {
   body { color:#000; }
   .container { max-width: unset; margin: 0; font-size: 12pt; }
+  a { color: #000; border-bottom: 1px solid #000; }
   h1,h2,h3 { page-break-after: avoid; }
   table { page-break-inside: avoid; }
   .page-break { page-break-before: always; }
+  /* 印刷では横スクロール不要なので折返し許可 */
+  table, th, td { white-space: normal; }
 }
 
-/* --- Mobile-friendly tables override (append at end) --- */
-
-/* 横スクロールをスムーズに */
-.table-wrap {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-}
-
-/* 折り返し防止＆数値の桁そろえ */
-table {
-  white-space: nowrap;                 /* 数字や短い見出しが縦に割れない */
-}
-td.num, th.num {
-  text-align: right;
-  font-variant-numeric: tabular-nums;  /* 桁が揃う */
-}
-
-/* セル内の予期しない改行を抑制（日本語は必要箇所で自動改行） */
-th, td {
-  word-break: keep-all;   /* 英数はくっつける */
-}
-td { word-break: auto-phrase; } /* 対応ブラウザでは日本語の自然改行 */
-
-/* モバイル時に少しだけ文字を小さくして収まりUP */
-@media (max-width: 768px) {
-  table { font-size: 0.9em; }
-  .table-wrap { margin: 0 -10px; padding: 0 10px; } /* 端までスワイプしやすく */
+/* ---------- (Optional) Dark Mode (自動) ---------- */
+@media (prefers-color-scheme: dark) {
+  body { background:#0b0b0b; color:#e8e8e8; }
+  h1,h2 { border-bottom-color:#666; }
+  h3 { border-left-color:#777; }
+  a { color:#7db7ff; border-bottom-color:#7db7ff66; }
+  a:hover { border-bottom-color:#7db7ff; }
+  th { background:#16181b; }
+  th, td { border-color:#3a3d42; }
+  tbody tr:nth-child(odd) td { background:#101113; }
+  code { background:#0f1114; border-color:#22262c; color:#dfe6f3; }
 }
