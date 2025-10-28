@@ -124,15 +124,23 @@ code { background:#f6f8fa; border:1px solid #e4e7eb; padding:.1rem .3rem; border
   table, th, td { white-space: normal; }
 }
 
-/* ---------- (Optional) Dark Mode (自動) ---------- */
+/* ---------- (Improved) Dark Mode (auto) ---------- */
 @media (prefers-color-scheme: dark) {
   body { background:#0b0b0b; color:#e8e8e8; }
   h1,h2 { border-bottom-color:#666; }
   h3 { border-left-color:#777; }
   a { color:#7db7ff; border-bottom-color:#7db7ff66; }
   a:hover { border-bottom-color:#7db7ff; }
-  th { background:#16181b; }
-  th, td { border-color:#3a3d42; }
-  tbody tr:nth-child(odd) td { background:#101113; }
+
+  /* テーブル色調整 */
+  th { background:#16181b; color:#eaeaea; }
+  th, td { border-color:#3a3d42; color:#eaeaea; }
+  tbody tr:nth-child(odd) td { background:#111214; }   /* 濃い灰で奇数行 */
+  tbody tr:nth-child(even) td { background:#181a1d; }  /* 少し明るい灰で偶数行 */
+  
+  /* 強調値（strong）を明るく */
+  td strong { color:#fff; }
+
+  /* コード/リンク */
   code { background:#0f1114; border-color:#22262c; color:#dfe6f3; }
 }
