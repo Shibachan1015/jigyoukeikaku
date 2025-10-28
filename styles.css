@@ -62,3 +62,32 @@ code { background:#f6f8fa; border:1px solid #e4e7eb; padding:.1rem .3rem; border
   table { page-break-inside: avoid; }
   .page-break { page-break-before: always; }
 }
+
+/* --- Mobile-friendly tables override (append at end) --- */
+
+/* 横スクロールをスムーズに */
+.table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* 折り返し防止＆数値の桁そろえ */
+table {
+  white-space: nowrap;                 /* 数字や短い見出しが縦に割れない */
+}
+td.num, th.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;  /* 桁が揃う */
+}
+
+/* セル内の予期しない改行を抑制（日本語は必要箇所で自動改行） */
+th, td {
+  word-break: keep-all;   /* 英数はくっつける */
+}
+td { word-break: auto-phrase; } /* 対応ブラウザでは日本語の自然改行 */
+
+/* モバイル時に少しだけ文字を小さくして収まりUP */
+@media (max-width: 768px) {
+  table { font-size: 0.9em; }
+  .table-wrap { margin: 0 -10px; padding: 0 10px; } /* 端までスワイプしやすく */
+}
